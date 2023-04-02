@@ -1,0 +1,227 @@
+ SAP FIORI
+
+Instalar VS code
+Instalar NODE.js instalar
+Abrir Visal Study Code
+Instalar libs
+SAP FIORI TOOLS EXTECION PACKS
+UI5 XML SUPORT
+
+Criada pasta DEV/SAPFIORI/CODIGO_BARRAS
+Nome do projeto: Projeto Codigo de barras
+Entao vamos criar o diretorio; codigo_barras e vammos nos posicionar na pasta
+$ C:\dev\sapfiori\codigo_barras>
+Para o sistema gerar o projeto MVC 
+$ dotnet new mvc --auth None
+Depois dentro do diretorio do projeto digitamos code . para que carregue o Visual Studio Code
+$ code . 
+
+Abrir o VS code clicar em Open FOLDER
+Abrir a pasta Codigo_Barras
+View-_> Comand Pallet ou F1.
+Depois de aberto a pasta vamos no VS code , clicamos na barra superior da tela
+ e apertamos F1.
+digitamos Fiori onde ira aparecer todas as funcionalidades que foram instaladas pela extensão.
+aparecera uma lista fiori: funcionalidades
+Vamos escolher
+fiori:Open Aplication Generation
+Esta funcionalidade é para a geração de aplicativos com layouts padroes preconstruidos
+Existem dois tipos de aplicativos: SAPUI5 Freestyle e Fiori elements
+Fiori elements é para quem tem acesso ao SAP
+Depois disso vamos escolher
+SAPUI5 Freestyle - Para construirmos aplicativos OFF line 
+Vamos escolher fazer um app do Zero escolhendo a opção
+Clicamos em Template Wizard
+->SAPUI5 Aplication ->  NEXT
+Neste momento é que escolhemos em qual base queremos acessar , SAP, DBDADOS ou NONE
+Vamos escolher NONE
+Data Source -> None -> NEXT -> Nome da tela Vou deixar View0001 -> NEXT
+Modulo Name -> Nome do projeto -> consulta_produtos
+Titulo Name -> Consulta de Produtos
+Aplication Name Space -> Em branco
+Descripition : Consulta de Produtos
+Depois clicar em Finish
+Aguardar o programa ser gerado
+
+Depois do programa gerado Execute a aplicação para verificar erros de instalação de pacotes.
+
+Programa gerado vsamos para o desenvolvimento da interface:
+Apos gerar o programa sao geradas varias pastas abaixo do projeto
+Onde vamos concentrar o desenvolvimento adotando a metodologia MVC sera a pasta WEBAPP
+nela conterá as pastars de , Controle, Modelos e Visões.
+Iniciaremos criando a View, abrimos a view1.view.xml
+Colocamos o seguinte codigo na pasta VIEW->View1.view.xml:
+
+<mvc:View controllerName="codigobarras.controller.ViewCA0001"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+          <FlexBox justifyContent ='Center'>
+              <input id="inpBusca" />
+              <Button text="Buscar" press= "onPressBuscar"/>
+          </FlexBox>
+
+          <VBox id="productBox" visible="true">
+                <ObjectHeader
+                title="GUARANA"
+                number="1L">
+                <attributes>
+                    <ObjectAttributes title="Codigo de Barras" text="7898920238060"
+                    <ObjectAttributes title="Marca" text="Antarctica"
+                </attributes>
+                </ObjectHeader>
+          <VBox>
+        </content>
+    </Page>
+</mvc:View>
+
+Agora vamos implementar as ações do botao no arquivo View1.controller.js na pasta CONTROLLER
+OBS:
+Aqui seria onde iriamos declarar e fazer nossa programação de funcões equivaleno com ABAP seria
+o local de implementação dos PERFORMS, local de INICIALIZACA".
+
+Erro do Lauch.Json - https://www.youtube.com/watch?v=UH9iJcZjUes
+
+Arquivo: CONTROLLER-> ViewCA0001.controller.js
+
+sap.ui.define([
+    "sap/ui/core/mvc/Controller"
+],
+    /**
+     * @param {typeof sap.ui.core.mvc.Controller} Controller
+     */
+    function (Controller) {
+        "use strict";
+
+        return Controller.extend("codigobarras.controller.ViewCA0001", {
+            onInit: function () {
+             // alert('Implementei alerta no browser!');  
+            
+            },
+            onPressBuscar: function(){
+                let input;
+                input = this.byId("inpBusca");
+                let valor = input.getValue();
+                alert(valor);
+               
+                // Tipos de Variaveis
+                let material = "Agua Mineral";
+                // Tipo Inteiro
+                let peso = 500;
+                let um = "Kg";
+                //Numerico comcasas decimeis
+                let valor = 3.50;
+                // Abap_bool = Boleano no ABAP
+                let status = true;
+                // Tabela interna no java script igual a ARRAY
+                let composicao = ["Bicarbonato"."Magnesio","Sulfato","Brometo"];
+                // Estrutura - Tipo de Variaveis Propriedades - ou tambem chamados de objetos
+                let produto = {
+                    descricao = "Farinha Lactea"
+                    marca = "Nestle",
+                    peso = 500,
+                    um = "kg"
+                } 
+                
+            }
+
+        });
+    });
+
+
+2a Aula
+
+Falou sobre fundamentos de se conseguir recolocação no trabalho
+depois desenvolveu no programa Main.controller.js
+
+Abrir URL-> word.openfoodfacts.org/api/v2/product/ + barcode
+Barcode = 3268840001008
+
+word.openfoodfacts.org/api/v2/product/3268840001008
+
+https://www.youtube.com/redirect?event=live_chat&redir_token=QUFFLUhqbndRWUxGeGNHUDJSSTFrQ2hzblh5UVU2aGJrQXxBQ3Jtc0tualpwMkZXZGtGYzh5TlM4ZTZLY3ZpVDVkWUhnRXEwTGI1SFBPUkNsZDF1TVZDUlNrZGcxTU8yZ1JYWE02RnI3cE9Ya0RBRzkwZ1hYS0l1YnZVVDJTeVdmOWxzMVdabEhsazI0c01Dd2dGTEpNY2VSSQ&q=https%3A%2F%2Fworld.openfoodfacts.org%2F
+https://www.youtube.com/redirect?event=live_chat&redir_token=QUFFLUhqbGJ6aWpSWkdMLVNjdXBLLXJZcm5sbHJyQVBTd3xBQ3Jtc0tuR2loR0V6VWg4eTJuaEVKSzU2Ukt1QVVQYnROZk5oN3l3ZjJBX1B3bkNwVzkzSnZNcVNFbm5pMTU5dzNWN2E5aXc2aWdBR0JYWWZBcmhhVDd1WjFzeDZkU0ZTX3Vhd05EazdVLVRpRHdrcVpFM2tWYw&q=https%3A%2F%2Fworld.openfoodfacts.org%2Fapi%2Fv2%2Fproduct%2F
+
+Jason formatter Devolve o conteudo arrumado
+Ou instala esta extenção do googlr com o Json Handle
+https://www.youtube.com/redirect?event=live_chat&redir_token=QUFFLUhqa2Q5T1ZKSjZxUWF6RjZNVTItZGZfQkFSWDluZ3xBQ3Jtc0traDF2QjZUekhTSzhzRWFDSnZjOGQwbnVyZ3RWQ1BERWFjQ0ZYRTRsWUY5LTdDSXc5T1NPSGhQZjFNbi1Fa0Z2bUFzNXJNcE9mYVZXN09ZbUdVRGRzWVA3Nm52RDhkSm1RVnhXZDFYcVVoWHlsbGpNNA&q=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fjson-handle%2Fiahnhfdhidomcpggpaimmmahffihkfnj
+
+
+Criamos um arquivo na pasta MODEL e criamos um arquivo PRODUTOS.JSON
+Nele colocamos o conteudo do barcode extraido da url+Barcode.
+Salvamos no formato Java script atraves da extensao JavaScript Formated
+
+Depois, vamos mostra os dados deste produto no aplicativo.
+Iremos acessar o arquivo Manifest.JSON ele é o arquivo de inicialização dos programas SAP
+Seria o arquivo de configuração das rotas, conexao com banco de dados, funções de navegação, entre outras definições.
+Nele tem varios objetos definidos com atributos, Vamos no objeto 
+Vamos acressentar esta instrução que sera o terceiro objeto definido dentro dele:
+"models" :{
+ "i18n":{ Arquivo de traduções
+ },
+ " ":{ Arquivo de datasource Banco de dados
+
+ },
+ "ModeloProduto ":{
+	"type": "sap.ui.model.json.JSONModel",
+	"uri": "model/produtos.json",
+ }
+}
+
+Vamos ver agora como colocar os dados ou relacionalos a nossa aplicação.
+Vamos acessar a nossa view0001.view.xml
+
+Colocamos o seguinte codigo na pasta VIEW->View1.view.xml:
+Transomos os campos do arquivo produtos.json e substituimos na VIEW.
+
+<mvc:View controllerName="codigobarras.controller.ViewCA0001"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+          <FlexBox justifyContent ='Center'>
+              <input id="inpBusca" />
+              <Button text="Buscar" press= "onPressBuscar"/>
+          </FlexBox>
+
+          <VBox id="productBox" visible="true">
+                <ObjectHeader
+                title="GUARANA"
+                number="1L">
+                <attributes>
+                    <ObjectAttributes title="Codigo de Barras" text="7898920238060"
+                    <ObjectAttributes title="Marca" text="Antarctica"
+                </attributes>
+                </ObjectHeader>
+          <VBox>
+        </content>
+    </Page>
+</mvc:View>
+
+TIPOS DE VARIAVEIS
+
+
+                // Tipos de Variaveis
+                let material = "Agua Mineral";
+                // Tipo Inteiro
+                let peso = 500;
+                let um = "Kg";
+                //Numerico comcasas decimeis
+                let valor = 3.50;
+                // Abap_bool = Boleano no ABAP
+                let status = true;
+                // Tabela interna no java script igual a ARRAY
+                let composicao = ["Bicarbonato"."Magnesio","Sulfato","Brometo"];
+                // Estrutura - Tipo de Variaveis Propriedades - ou tambem chamados de objetos
+                let produto = {
+                    descricao = "Farinha Lactea"
+                    marca = "Nestle",
+                    peso = 500,
+                    um = "kg"
+
+3a AULA
+
+
+
+
